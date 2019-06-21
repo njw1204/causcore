@@ -19,7 +19,7 @@ def cau_sso_login(session, id, password):
         "userID": id,
         "password": password,
         "credType": "BASIC",
-        "retURL": "http://cauid.cau.ac.kr/smssoln_pcs.asp?smlnloginid=njw1204"
+        "retURL": "http://cauid.cau.ac.kr/smssoln_pcs.asp?smlnloginid=" + id
     }
 
     r = s.post("https://sso2.cau.ac.kr/SSO/AuthWeb/Logon.aspx?ssosite=cauid.cau.ac.kr", data=init_data, headers=h)
