@@ -1,4 +1,6 @@
-﻿import time
+#-*- coding:utf-8 -*-
+
+import time
 from datetime import datetime, timedelta
 import smtplib
 from email.mime.text import MIMEText
@@ -19,7 +21,7 @@ def cau_sso_login(session, id, password):
         "userID": id,
         "password": password,
         "credType": "BASIC",
-        "retURL": "http://cauid.cau.ac.kr/smssoln_pcs.asp?smlnloginid=" + id
+        "retURL": "http://cauid.cau.ac.kr/smssoln_pcs.asp?smlnloginid=njw1204"
     }
 
     r = s.post("https://sso2.cau.ac.kr/SSO/AuthWeb/Logon.aspx?ssosite=cauid.cau.ac.kr", data=init_data, headers=h)
@@ -55,7 +57,7 @@ def get_class_list(session):
     strong_class_titles = bs.select(".title .tit")
     for i in strong_class_titles:
         title_list.append(i.text.strip())
-
+    
     a_class_urls = bs.select(".info a")
     for i in a_class_urls:
         url_list.append("http://cauid.cau.ac.kr/Symtra_Attendance/" + i.get("href"))
@@ -172,7 +174,9 @@ if __name__ == "__main__":
                                 print("<알림 메일 전송 실패>")
 
         except Exception as e:
-            print("\n" + e + "\n")
+            print("\n[Unknown Error]")
+            print(e)
+            print()
         finally:
             time.sleep(30)
             turn += 1
