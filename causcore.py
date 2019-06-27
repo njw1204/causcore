@@ -132,6 +132,7 @@ if __name__ == "__main__":
     while True:
         try:
             if datetime.now() - start_time > timedelta(minutes=3):
+                s = requests.session()
                 if cau_sso_login(s, id, pw):
                     if turn == 1:
                         print("중앙대 e-ID 로그인 성공!")
